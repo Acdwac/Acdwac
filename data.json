@@ -1,6 +1,6 @@
 {
-  "leagueName": "DLS Champions League",
-  "teams": ["Real Madrid", "FC Barcelona", "Man City", "PSG"],
+  "leagueName": "DLS ABAFUDIKI League",
+  "teams": ["Real Mad", "FC Barcelona", "Man City", "PSG"],
   "matches": [
     { "id": 0, "round": 1, "homeTeam": "Real Madrid", "awayTeam": "PSG", "homeScore": 3, "awayScore": 1 },
     { "id": 1, "round": 1, "homeTeam": "FC Barcelona", "awayTeam": "Man City", "homeScore": 2, "awayScore": 2 },
