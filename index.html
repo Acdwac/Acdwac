@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLS League Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <!-- Public Header -->
+    <div class="header">
+        <h1 id="publicLeagueTitle">🎮 DLS League</h1>
+        <p>Official League Standings & Match Results</p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tab-nav">
+        <button class="tab-btn active" id="tabTableBtn" onclick="switchTab('table')">📊 Standings Table</button>
+        <button class="tab-btn" id="tabFixturesBtn" onclick="switchTab('fixtures')">⚽ Fixtures & Results</button>
+    </div>
+
+    <!-- Standings Table View -->
+    <div id="tableView" class="card">
+        <h2 class="card-title">League Table</h2>
+        <div class="table-container">
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th style="text-align: left;">Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GF</th>
+                        <th>GA</th>
+                        <th>GD</th>
+                        <th>Pts</th>
+                    </tr>
+                </thead>
+                <tbody id="publicStandingsBody">
+                    <tr><td colspan="10" style="color: var(--text-muted);">Loading standings...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Fixtures & Results View -->
+    <div id="fixturesView" class="card" style="display: none;">
+        <h2 class="card-title">Match Results & Schedule</h2>
+        <div id="publicFixturesList">
+            <p style="text-align: center; color: var(--text-muted);">Loading fixtures...</p>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
