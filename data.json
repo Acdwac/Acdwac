@@ -67,7 +67,7 @@
     { "id": 43, "round": 11, "homeTeam": "Young stars", "awayTeam": "BC fc", "homeScore": 1, "awayScore": 1 },
 
     { "id": 44, "round": 12, "homeTeam": "Cr7 fc", "awayTeam": "Acdwac fc", "homeScore": null, "awayScore": null },
-    { "id": 45, "round": 12, "homeTeam": "Arsenal DMWS FC", "awayTeam": "Zouma fc", "homeScore": null, "awayScore": null },
+    { "id": 45, "round": 12, "homeTeam": "Arsenal DMWS FC", "awayTeam": "Zouma fc", "homeScore": 2, "awayScore": 2 },
     { "id": 46, "round": 12, "homeTeam": "Young stars", "awayTeam": "Arsenal fc", "homeScore": null, "awayScore": null },
     { "id": 47, "round": 12, "homeTeam": "BC fc", "awayTeam": "SC Kitara", "homeScore": null, "awayScore": null },
 
