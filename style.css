@@ -1,17 +1,16 @@
 
 
 :root {
-    --bg-dark: #0d0f1d;
-    --card-bg: rgba(23, 27, 48, 0.75);
+    --bg-dark: #0a100d;
+    --card-bg: rgba(16, 26, 20, 0.85);
     --border-color: rgba(255, 255, 255, 0.08);
-    --primary-cyan: #00f2fe;
-    --primary-blue: #4facfe;
-    --accent-purple: #7f00ff;
+    --primary-green: #10b981;
+    --accent-mint: #34d399;
     --gold: #ffb703;
     --text-main: #ffffff;
-    --text-muted: #a0a5c0;
-    --badge-bg: #131728;
-    --hover-glow: rgba(0, 242, 254, 0.25);
+    --text-muted: #9ca3af;
+    --badge-bg: #121c16;
+    --hover-glow: rgba(16, 185, 129, 0.25);
 }
 
 * {
@@ -22,105 +21,103 @@
 }
 
 body {
-    background: radial-gradient(circle at top center, #1b1e38 0%, #0d0f1d 100%);
+    background: radial-gradient(circle at top center, #132219 0%, #0a100d 100%);
     color: var(--text-main);
     min-height: 100vh;
-    padding: 25px 15px;
+    padding: 10px 8px;
     display: flex;
     justify-content: center;
 }
 
 .container {
     width: 100%;
-    max-width: 950px;
+    max-width: 900px;
 }
 
-/* --- Header Section --- */
+/* --- Header Section (Compact) --- */
 .header {
     text-align: center;
-    margin-bottom: 30px;
-    padding: 20px;
+    margin-bottom: 12px;
+    padding: 10px 15px;
     background: var(--card-bg);
-    border-radius: 20px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header h1 {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue), #ff416c);
+    background: linear-gradient(135deg, var(--accent-mint), var(--primary-green), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 6px;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
 }
 
 .header p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.82rem;
     font-weight: 500;
 }
 
-/* --- Navigation Tabs --- */
+/* --- Navigation Tabs (Compact) --- */
 .tab-nav {
     display: flex;
-    gap: 12px;
-    margin-bottom: 25px;
+    gap: 8px;
+    margin-bottom: 12px;
     justify-content: center;
 }
 
 .tab-btn {
     flex: 1;
-    max-width: 250px;
-    padding: 14px 20px;
-    font-size: 0.95rem;
+    max-width: 220px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-muted);
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 14px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(6px);
 }
 
 .tab-btn:hover {
     color: var(--text-main);
-    border-color: var(--primary-cyan);
-    box-shadow: 0 0 15px var(--hover-glow);
-    transform: translateY(-2px);
+    border-color: var(--primary-green);
+    box-shadow: 0 0 10px var(--hover-glow);
 }
 
 .tab-btn.active {
     color: #ffffff;
-    background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+    background: linear-gradient(135deg, var(--accent-mint) 0%, var(--primary-green) 100%);
     border-color: transparent;
-    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.35);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
-/* --- Card Containers --- */
+/* --- Card Containers (Compact) --- */
 .card {
     background: var(--card-bg);
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 14px;
+    padding: 14px 16px;
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .card-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--primary-cyan);
+    margin-bottom: 10px;
+    color: var(--accent-mint);
     letter-spacing: 0.5px;
 }
 
-/* --- Standings Table --- */
+/* --- Standings Table (Tight Spacing) --- */
 .table-container {
     overflow-x: auto;
 }
@@ -128,26 +125,26 @@ body {
 .standings-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.92rem;
+    font-size: 0.85rem;
 }
 
 .standings-table th {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
     color: var(--text-muted);
     font-weight: 700;
-    padding: 12px 10px;
+    padding: 6px 6px;
     text-transform: uppercase;
-    font-size: 0.78rem;
-    letter-spacing: 1px;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
     border-bottom: 2px solid var(--border-color);
 }
 
 .standings-table td {
-    padding: 14px 10px;
+    padding: 7px 6px;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     color: var(--text-main);
-    transition: background 0.2s ease;
+    transition: background 0.15s ease;
 }
 
 .standings-table tr:hover td {
@@ -166,26 +163,26 @@ body {
 
 .standings-table .pos {
     font-weight: 700;
-    color: var(--primary-cyan);
+    color: var(--accent-mint);
 }
 
 .standings-table .pts {
     font-weight: 800;
-    color: #00ffaa;
-    font-size: 1.05rem;
+    color: var(--gold);
+    font-size: 0.95rem;
 }
 
-/* --- Fixtures & Results --- */
+/* --- Fixtures & Results (Tight Spacing) --- */
 .round-title {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--gold);
-    margin: 25px 0 12px 0;
-    padding-bottom: 6px;
+    margin: 14px 0 6px 0;
+    padding-bottom: 4px;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .round-title:first-child {
@@ -198,71 +195,52 @@ body {
     align-items: center;
     background: var(--badge-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 12px 18px;
-    margin-bottom: 10px;
-    transition: all 0.25s ease;
+    border-radius: 8px;
+    padding: 6px 12px;
+    margin-bottom: 6px;
+    transition: all 0.2s ease;
 }
 
 .fixture-card:hover {
-    border-color: rgba(0, 242, 254, 0.4);
-    transform: scale(1.01);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(52, 211, 153, 0.4);
+    transform: scale(1.005);
 }
 
 .fixture-team {
     flex: 1;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 
 .fixture-team.home {
     text-align: right;
-    padding-right: 12px;
+    padding-right: 8px;
     color: #e0e6ed;
 }
 
 .fixture-team.away {
     text-align: left;
-    padding-left: 12px;
+    padding-left: 8px;
     color: #e0e6ed;
 }
 
 /* Score Badges */
 .score-badge {
-    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
+    background: linear-gradient(135deg, var(--accent-mint), var(--primary-green));
     color: #000;
     font-weight: 800;
-    font-size: 0.9rem;
-    padding: 5px 16px;
-    border-radius: 20px;
-    min-width: 75px;
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    border-radius: 14px;
+    min-width: 60px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.25);
 }
 
 .score-badge.pending {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
     color: var(--text-muted);
     font-weight: 600;
     box-shadow: none;
     border: 1px solid var(--border-color);
-}
-
-/* Responsive Styles */
-@media (max-width: 600px) {
-    .header h1 {
-        font-size: 1.6rem;
-    }
-    .fixture-card {
-        padding: 10px 12px;
-    }
-    .fixture-team {
-        font-size: 0.85rem;
-    }
-    .score-badge {
-        padding: 4px 10px;
-        font-size: 0.8rem;
-        min-width: 60px;
-    }
 }
