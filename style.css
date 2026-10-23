@@ -143,7 +143,7 @@ body {
     padding: 7px 6px;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
-    color: var(--text-main);
+    color: var(--text-main); /* All team names and stats render in white */
     transition: background 0.15s ease;
 }
 
