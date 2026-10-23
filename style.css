@@ -151,16 +151,7 @@ body {
     background: rgba(255, 255, 255, 0.04);
 }
 
-/* Highlight Top Position */
-.standings-table tr:nth-child(1) .pos {
-    color: var(--gold);
-    font-weight: 800;
-}
-
-.standings-table tr:nth-child(1) td:nth-child(2) {
-    color: var(--gold);
-}
-
+/* Position and Points Columns */
 .standings-table .pos {
     font-weight: 700;
     color: var(--accent-mint);
