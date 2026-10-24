@@ -26,7 +26,7 @@
     { "id": 7, "round": 2, "homeTeam": "DBH OB HEATER", "awayTeam": "Trist FC", "homeScore": 0, "awayScore": 4 },
     { "id": 8, "round": 2, "homeTeam": "BIG SHOE FC", "awayTeam": "Sc kitara", "homeScore": null, "awayScore": null },
     { "id": 9, "round": 2, "homeTeam": "Young stars", "awayTeam": "Patryc FC", "homeScore":  1, "awayScore": 2 },
-    { "id": 10, "round": 2, "homeTeam": "Phoenix FC", "awayTeam": "CR7 fc", "homeScore": null, "awayScore": null },
+    { "id": 10, "round": 2, "homeTeam": "Phoenix FC", "awayTeam": "CR7 fc", "homeScore": 1, "awayScore": 2 },
     { "id": 11, "round": 2, "homeTeam": "BC FC", "awayTeam": "Arsenal DMWS FC", "homeScore": 0, "awayScore": 1 },
 
     { "id": 12, "round": 3, "homeTeam": "Acdwac fc", "awayTeam": "Trist FC", "homeScore": 1, "awayScore": 0 },
@@ -103,7 +103,7 @@
     { "id": 73, "round": 13, "homeTeam": "Trist FC", "awayTeam": "DBH OB HEATER", "homeScore": 2, "awayScore": 2 },
     { "id": 74, "round": 13, "homeTeam": "Sc kitara", "awayTeam": "BIG SHOE FC", "homeScore": null, "awayScore": null },
     { "id": 75, "round": 13, "homeTeam": "Patryc FC", "awayTeam": "Young stars", "homeScore": 1, "awayScore": 0 },
-    { "id": 76, "round": 13, "homeTeam": "CR7 fc", "awayTeam": "Phoenix FC", "homeScore": null, "awayScore": null },
+    { "id": 76, "round": 13, "homeTeam": "CR7 fc", "awayTeam": "Phoenix FC", "homeScore": 3, "awayScore": 1 },
     { "id": 77, "round": 13, "homeTeam": "Arsenal DMWS FC", "awayTeam": "BC FC", "homeScore": 2, "awayScore": 0 },
 
     { "id": 78, "round": 14, "homeTeam": "Trist FC", "awayTeam": "Acdwac fc", "homeScore":  2, "awayScore": 2 },
