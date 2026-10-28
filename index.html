@@ -2,67 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DLS Abafudiki League</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KAB DLS 1.1 LEAGUE | Official Dashboard</title>
+
+    <!-- Social Media Open Graph Metadata -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="DLS Abafudiki League">
-    <meta property="og:description" content="View live standings and match results for the DLS Abafudiki League tournament!">
-    <meta property="og:image" content="https://acdwac.github.io/Acdwac/logo.jpg">
-    <meta property="og:url" content="https://acdwac.github.io/Acdwac/">
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <meta property="og:title" content="KAB DLS 1.1 LEAGUE">
+    <meta property="og:description" content="View live standings, round-by-round fixtures, and match results for KAB DLS 1.1 LEAGUE!">
+    <meta property="og:image" content="https://acdwac.github.io/Kab-dls/logo.jpg">
+    <meta property="og:url" content="https://acdwac.github.io/Kab-dls/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.jpg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldCustom: '#10b981',
+                        mintCustom: '#34d399',
+                        goldCustom: '#ffb703',
+                        darkBg: '#0a100d',
+                        darkCard: 'rgba(16, 26, 20, 0.85)',
+                        darkBorder: '#1f3127',
+                        darkHeader: '#14221a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- External Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="min-h-screen pb-6 text-slate-100 flex flex-col items-center justify-start">
 
-<div class="container">
-    <!-- Public Header -->
-    <div class="header">
-        <h1 id="publicLeagueTitle">🎮 DLS ABAFUDIKI League</h1>
-        <p>Official League Standings & Match Results</p>
-    </div>
+    <!-- Container Wrap -->
+    <div class="w-full max-w-md sm:max-w-2xl md:max-w-4xl px-2 sm:px-4">
 
-    <!-- Navigation Tabs -->
-    <div class="tab-nav">
-        <button class="tab-btn active" id="tabTableBtn" onclick="switchTab('table')">📊 Standings Table</button>
-        <button class="tab-btn" id="tabFixturesBtn" onclick="switchTab('fixtures')">⚽ Fixtures & Results</button>
-    </div>
+        <!-- Header & Logo Section -->
+        <header class="py-4 text-center flex flex-col items-center border-b border-darkBorder mb-3">
+            <div class="relative group cursor-pointer mb-2">
+                <div class="absolute -inset-1 bg-gradient-to-r from-emeraldCustom via-goldCustom to-mintCustom rounded-full blur opacity-40 group-hover:opacity-75 transition duration-300"></div>
+                <!-- Logo Display with Dynamic SVG Fallback -->
+                <div class="relative w-20 h-20 sm:w-24 sm:h-24 bg-darkCard rounded-full flex items-center justify-center border-2 border-emeraldCustom p-1 overflow-hidden">
+                    <img id="leagueLogo" src="logo.png" alt="KAB DLS 1.1 LEAGUE LOGO" class="w-full h-full object-contain rounded-full" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><rect width=\'200\' height=\'200\' fill=\'%230a100d\'/><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'none\' stroke=\'%2310b981\' stroke-width=\'6\'/><polygon points=\'100,20 170,160 30,160\' fill=\'none\' stroke=\'%23ffb703\' stroke-width=\'4\'/><text x=\'100\' y=\'110\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>KAB DLS</text><text x=\'100\' y=\'135\' font-family=\'sans-serif\' font-size=\'14\' fill=\'%2334d399\' text-anchor=\'middle\'>1.1 LEAGUE</text></svg>';">
+                </div>
+            </div>
 
-    <!-- Standings Table View -->
-    <div id="tableView" class="card">
-        <h2 class="card-title">League Table</h2>
-        <div class="table-container">
-            <table class="standings-table">
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th style="text-align: left;">Team</th>
-                        <th>P</th>
-                        <th>W</th>
-                        <th>D</th>
-                        <th>L</th>
-                        <th>GF</th>
-                        <th>GA</th>
-                        <th>GD</th>
-                        <th>Pts</th>
-                    </tr>
-                </thead>
-                <tbody id="publicStandingsBody">
-                    <tr><td colspan="10" style="color: var(--text-muted);">Loading standings...</td></tr>
-                </tbody>
-            </table>
+            <h1 id="publicLeagueTitle" class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white flex items-center justify-center gap-2">
+                <i class="fa-solid fa-trophy text-goldCustom"></i> KAB DLS 1.1 LEAGUE
+            </h1>
+            <p class="text-xs sm:text-sm text-mintCustom font-semibold mt-0.5">Official Acdwac Tournament Dashboard</p>
+        </header>
+
+        <!-- Compact Navigation Tabs -->
+        <div class="grid grid-cols-2 gap-2 bg-darkCard p-1 rounded-xl border border-darkBorder mb-4">
+            <button id="tabTableBtn" onclick="switchTab('table')" class="tab-btn active py-2 rounded-lg text-xs sm:text-sm font-semibold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-list-ol"></i> Standings Table
+            </button>
+            <button id="tabFixturesBtn" onclick="switchTab('fixtures')" class="tab-btn py-2 rounded-lg text-xs sm:text-sm font-semibold text-gray-300 hover:text-white flex items-center justify-center gap-2">
+                <i class="fa-solid fa-calendar-days"></i> Fixtures & Results
+            </button>
         </div>
+
+        <!-- ==================== STANDINGS VIEW ==================== -->
+        <main id="tableView" class="block">
+            <div class="bg-darkCard rounded-xl border border-darkBorder overflow-hidden shadow-lg">
+                <div class="px-3 py-2.5 bg-darkHeader border-b border-darkBorder flex items-center justify-between">
+                    <h2 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-emeraldCustom"></i> Tournament Leaderboard
+                    </h2>
+                    <span id="matchCounter" class="text-[10px] sm:text-xs bg-darkBg text-mintCustom px-2 py-0.5 rounded border border-darkBorder font-mono">0 Matches</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-center compact-table border-collapse">
+                        <thead>
+                            <tr class="bg-darkBg/90 text-gray-400 font-semibold uppercase text-[10px] sm:text-xs border-b border-darkBorder">
+                                <th class="w-8 text-center">Pos</th>
+                                <th class="text-left pl-2">Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>GD</th>
+                                <th class="text-emeraldCustom font-bold pr-2">Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody id="publicStandingsBody" class="divide-y divide-darkBorder font-medium">
+                            <tr>
+                                <td colspan="10" class="py-8 text-center text-gray-400">
+                                    <i class="fa-solid fa-spinner fa-spin text-emeraldCustom text-xl mb-2"></i>
+                                    <div>Loading standings...</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Legend -->
+                <div class="p-2 bg-darkHeader border-t border-darkBorder flex flex-wrap items-center justify-between text-[10px] text-gray-400 gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-goldCustom inline-block"></span> 1st Place (Champion)
+                        <span class="w-2.5 h-2.5 rounded-full bg-emeraldCustom inline-block ml-2"></span> Top 4 (Playoffs)
+                    </div>
+                    <div>Tiebreakers: Pts &gt; GD &gt; GF</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ==================== FIXTURES VIEW ==================== -->
+        <main id="fixturesView" class="hidden">
+            <div class="bg-darkCard rounded-xl border border-darkBorder overflow-hidden p-3 shadow-lg">
+                <!-- Round Selector Filter -->
+                <div class="flex items-center justify-between mb-3 gap-2">
+                    <h2 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-futbol text-emeraldCustom"></i> Fixtures
+                    </h2>
+                    <select id="roundFilter" onchange="filterRound(this.value)" class="bg-darkBg border border-darkBorder text-white text-xs rounded-lg px-2 py-1 outline-none focus:border-emeraldCustom">
+                        <option value="all">Show All Rounds</option>
+                    </select>
+                </div>
+
+                <div id="publicFixturesList" class="space-y-2 max-h-[70vh] overflow-y-auto pr-1">
+                    <!-- Dynamic Fixture Inject -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-6 text-center text-gray-500 text-[11px] flex flex-col items-center gap-1">
+            <div>KAB DLS 1.1 LEAGUE © 2026 • All Rights Reserved</div>
+            <div class="text-gray-600">Official Acdwac Coding</div>
+        </footer>
+
     </div>
 
-    <!-- Fixtures & Results View -->
-    <div id="fixturesView" class="card" style="display: none;">
-        <h2 class="card-title">Match Results & Schedule</h2>
-        <div id="publicFixturesList">
-            <p style="text-align: center; color: var(--text-muted);">Loading fixtures...</p>
-        </div>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <!-- External Script -->
+    <script src="script.js"></script>
 </body>
 </html>
-
