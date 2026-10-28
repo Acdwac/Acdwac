@@ -51,25 +51,31 @@ function generateDefaultMatches(teams) {
     return matches;
 }
 
-// Initialize and Load Data
+// Initialize and Load Data with Error Prevention
 window.onload = function() {
     fetch('data.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            leagueData = data;
             leagueData.leagueName = "DLS ABAFUDIKI LEAGUE";
-            if (!leagueData.matches || leagueData.matches.length === 0) {
-                leagueData.matches = generateDefaultMatches(leagueData.teams || DEFAULT_TEAMS);
+            leagueData.teams = (data.teams && data.teams.length > 0) ? data.teams : DEFAULT_TEAMS;
+            
+            // Check if matches are provided in data.json, otherwise generate them
+            if (!data.matches || data.matches.length === 0) {
+                leagueData.matches = generateDefaultMatches(leagueData.teams);
+            } else {
+                leagueData.matches = data.matches;
             }
             renderPublicView();
         })
         .catch(error => {
-            console.log('Using default 22-round fallback dataset for DLS ABAFUDIKI LEAGUE:', error);
+            console.warn('Could not load data.json or error encountered. Initializing default fallback dataset:', error);
+            // Fallback safety ensures it never gets stuck on "Loading standings..."
+            leagueData.teams = DEFAULT_TEAMS;
             leagueData.matches = generateDefaultMatches(DEFAULT_TEAMS);
             renderPublicView();
         });
@@ -158,195 +164,6 @@ function renderPublicStandings() {
     if (counterElem) {
         counterElem.innerText = `${playedMatchesCount} / ${leagueData.matches ? leagueData.matches.length : 132} Played`;
     }
-
-    Object.keys(stats).forEach(t => { stats[t].gd = stats[t].gf - stats[t].ga; });
-
-    // Sort: Points -> Goal Difference -> Goals For
-    const sorted = Object.keys(stats).sort((a, b) => {
-        if (stats[b].pts !== stats[a].pts) return stats[b].pts - stats[a].pts;
-        if (stats[b].gd !== stats[a].gd) return stats[b].gd - stats[a].gd;
-        return stats[b].gf - stats[a].gf;
-    });
-
-    const tbody = document.getElementById('publicStandingsBody');
-    if (!tbody) return;
-
-    if (sorted.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="10" class="py-6 text-gray-400">No teams registered</td></tr>`;
-        return;
-    }
-
-    tbody.innerHTML = sorted.map((team, idx) => {
-        const s = stats[team];
-        const rank = idx + 1;
-
-        let posBadgeClass = "text-gray-400";
-        let rowBgClass = "hover:bg-darkHeader/60 transition-colors";
-
-        if (rank === 1) {
-            posBadgeClass = "bg-goldCustom text-darkBg font-black w-5 h-5 rounded-full inline-flex items-center justify-center text-[10px]";
-            rowBgClass = "bg-goldCustom/10 hover:bg-goldCustom/20 transition-colors";
-        } else if (rank <= 4) {
-            posBadgeClass = "bg-emeraldCustom/20 text-emeraldCustom font-bold w-5 h-5 rounded-full inline-flex items-center justify-center text-[10px]";
-        }
-
-        return `
-            <tr class="${rowBgClass}">
-                <td class="font-mono">
-                    <span class="${posBadgeClass}">${rank}</span>
-                </td>
-                <td class="text-left pl-2 font-bold text-white tracking-wide">
-                    ${rank === 1 ? `<i class="fa-solid fa-crown text-goldCustom text-[10px] mr-1"></i>` : ''}
-                    ${team}
-                </td>
-                <td class="text-gray-300 font-mono">${s.played}</td>
-                <td class="text-gray-300 font-mono">${s.won}</td>
-                <td class="text-gray-300 font-mono">${s.drawn}</td>
-                <td class="text-gray-300 font-mono">${s.lost}</td>
-                <td class="text-gray-400 font-mono text-[11px]">${s.gf}</td>
-                <td class="text-gray-400 font-mono text-[11px]">${s.ga}</td>
-                <td class="font-mono font-semibold ${s.gd > 0 ? 'text-mintCustom' : s.gd < 0 ? 'text-red-400' : 'text-gray-400'}">
-                    ${s.gd > 0 ? '+' + s.gd : s.gd}
-function generateDefaultMatches(teams) {
-    let matches = [];
-    let idCounter = 0;
-    const numTeams = teams.length;
-    let tempTeams = [...teams];
-
-    for (let round = 1; round <= (numTeams - 1) * 2; round++) {
-        const isSecondHalf = round > (numTeams - 1);
-
-        for (let i = 0; i < numTeams / 2; i++) {
-            const homeIndex = i;
-            const awayIndex = numTeams - 1 - i;
-
-            let home = tempTeams[homeIndex];
-            let away = tempTeams[awayIndex];
-
-            if (isSecondHalf) {
-                let swap = home;
-                home = away;
-                away = swap;
-            }
-
-            matches.push({
-                id: idCounter++,
-                round: round,
-                homeTeam: home,
-                awayTeam: away,
-                homeScore: null,
-                awayScore: null
-            });
-        }
-
-        // Rotate team list holding the first element fixed
-        tempTeams.splice(1, 0, tempTeams.pop());
-    }
-
-    return matches;
-}
-
-// Initialize and Load Data
-window.onload = function() {
-    fetch('data.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            leagueData = data;
-            leagueData.leagueName = "KAB DLS 1.1 LEAGUE"; // Ensure strict name override
-            if (!leagueData.matches || leagueData.matches.length === 0) {
-                leagueData.matches = generateDefaultMatches(leagueData.teams || DEFAULT_TEAMS);
-            }
-            renderPublicView();
-        })
-        .catch(error => {
-            console.log('Using default 22-round fallback dataset for KAB DLS 1.1 LEAGUE:', error);
-            leagueData.matches = generateDefaultMatches(DEFAULT_TEAMS);
-            renderPublicView();
-        });
-};
-
-// Navigation Tab Switching
-function switchTab(tab) {
-    const tableBtn = document.getElementById('tabTableBtn');
-    const fixturesBtn = document.getElementById('tabFixturesBtn');
-    const tableView = document.getElementById('tableView');
-    const fixturesView = document.getElementById('fixturesView');
-
-    if (tab === 'table') {
-        tableBtn.classList.add('active');
-        tableBtn.classList.remove('text-gray-300');
-        fixturesBtn.classList.remove('active');
-        fixturesBtn.classList.add('text-gray-300');
-        
-        tableView.classList.remove('hidden');
-        tableView.classList.add('block');
-        fixturesView.classList.remove('block');
-        fixturesView.classList.add('hidden');
-    } else {
-        fixturesBtn.classList.add('active');
-        fixturesBtn.classList.remove('text-gray-300');
-        tableBtn.classList.remove('active');
-        tableBtn.classList.add('text-gray-300');
-
-        fixturesView.classList.remove('hidden');
-        fixturesView.classList.add('block');
-        tableView.classList.remove('block');
-        tableView.classList.add('hidden');
-    }
-}
-
-// Render Page Contents
-function renderPublicView() {
-    document.getElementById('publicLeagueTitle').innerHTML = `<i class="fa-solid fa-trophy text-goldCustom"></i> KAB DLS 1.1 LEAGUE`;
-    renderPublicStandings();
-    populateRoundFilter();
-    renderPublicFixtures('all');
-}
-
-// Compute & Display Table
-function renderPublicStandings() {
-    let stats = {};
-    const teams = leagueData.teams || DEFAULT_TEAMS;
-
-    teams.forEach(t => {
-        stats[t] = { played: 0, won: 0, drawn: 0, lost: 0, gf: 0, ga: 0, gd: 0, pts: 0 };
-    });
-
-    let playedMatchesCount = 0;
-
-    if (leagueData.matches) {
-        leagueData.matches.forEach(m => {
-            if (m.homeScore !== null && m.awayScore !== null && m.homeScore !== "" && m.awayScore !== "") {
-                playedMatchesCount++;
-                const home = stats[m.homeTeam];
-                const away = stats[m.awayTeam];
-
-                if (home && away) {
-                    const hScore = parseInt(m.homeScore, 10);
-                    const aScore = parseInt(m.awayScore, 10);
-
-                    home.played++; away.played++;
-                    home.gf += hScore; home.ga += aScore;
-                    away.gf += aScore; away.ga += hScore;
-
-                    if (hScore > aScore) {
-                        home.won++; home.pts += 3; away.lost++;
-                    } else if (hScore < aScore) {
-                        away.won++; away.pts += 3; home.lost++;
-                    } else {
-                        home.drawn++; away.drawn++; home.pts += 1; away.pts += 1;
-                    }
-                }
-            }
-        });
-    }
-
-    document.getElementById('matchCounter').innerText = `${playedMatchesCount} / ${leagueData.matches ? leagueData.matches.length : 132} Played`;
 
     Object.keys(stats).forEach(t => { stats[t].gd = stats[t].gf - stats[t].ga; });
 
