@@ -1,237 +1,45 @@
-
-
-:root {
-    --bg-dark: #0a100d;
-    --card-bg: rgba(16, 26, 20, 0.85);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --primary-green: #10b981;
-    --accent-mint: #34d399;
-    --gold: #ffb703;
-    --text-main: #ffffff;
-    --text-muted: #9ca3af;
-    --badge-bg: #121c16;
-    --hover-glow: rgba(16, 185, 129, 0.25);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
 body {
-    background: radial-gradient(circle at top center, #132219 0%, #0a100d 100%);
-    color: var(--text-main);
-    min-height: 100vh;
-    padding: 10px 8px;
-    display: flex;
-    justify-content: center;
+    background-color: #0a100d;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.container {
-    width: 100%;
-    max-width: 900px;
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
 }
-
-/* --- Header Section (Compact) --- */
-.header {
-    text-align: center;
-    margin-bottom: 12px;
-    padding: 10px 15px;
-    background: var(--card-bg);
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+::-webkit-scrollbar-track {
+    background: #0a100d;
 }
-
-.header h1 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--accent-mint), var(--primary-green), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 2px;
+::-webkit-scrollbar-thumb {
+    background: #1f3127;
+    border-radius: 4px;
 }
-
-.header p {
-    color: var(--text-muted);
-    font-size: 0.82rem;
-    font-weight: 500;
-}
-
-/* --- Navigation Tabs (Compact) --- */
-.tab-nav {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    justify-content: center;
+::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
 }
 
 .tab-btn {
-    flex: 1;
-    max-width: 220px;
-    padding: 8px 14px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    cursor: pointer;
     transition: all 0.2s ease;
-    backdrop-filter: blur(6px);
 }
-
-.tab-btn:hover {
-    color: var(--text-main);
-    border-color: var(--primary-green);
-    box-shadow: 0 0 10px var(--hover-glow);
-}
-
 .tab-btn.active {
-    color: #ffffff;
-    background: linear-gradient(135deg, var(--accent-mint) 0%, var(--primary-green) 100%);
-    border-color: transparent;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-}
-
-/* --- Card Containers (Compact) --- */
-.card {
-    background: var(--card-bg);
-    border-radius: 14px;
-    padding: 14px 16px;
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-.card-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--accent-mint);
-    letter-spacing: 0.5px;
-}
-
-/* --- Standings Table (Tight Spacing) --- */
-.table-container {
-    overflow-x: auto;
-}
-
-.standings-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-}
-
-.standings-table th {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text-muted);
-    font-weight: 700;
-    padding: 6px 6px;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    letter-spacing: 0.5px;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.standings-table td {
-    padding: 7px 6px;
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-main); /* All team names and stats render in white */
-    transition: background 0.15s ease;
-}
-
-.standings-table tr:hover td {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-/* Position and Points Columns */
-.standings-table .pos {
-    font-weight: 700;
-    color: var(--accent-mint);
-}
-
-.standings-table .pts {
+    background-color: #10b981;
+    color: #0a100d;
     font-weight: 800;
-    color: var(--gold);
-    font-size: 0.95rem;
+    box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
 }
 
-/* --- Fixtures & Results (Tight Spacing) --- */
-.round-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin: 14px 0 6px 0;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 6px;
+/* Mobile Ultra-Compact Table */
+.compact-table td, .compact-table th {
+    padding: 6px 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
 }
-
-.round-title:first-child {
-    margin-top: 0;
-}
-
-.fixture-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--badge-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 6px 12px;
-    margin-bottom: 6px;
-    transition: all 0.2s ease;
-}
-
-.fixture-card:hover {
-    border-color: rgba(52, 211, 153, 0.4);
-    transform: scale(1.005);
-}
-
-.fixture-team {
-    flex: 1;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.fixture-team.home {
-    text-align: right;
-    padding-right: 8px;
-    color: #e0e6ed;
-}
-
-.fixture-team.away {
-    text-align: left;
-    padding-left: 8px;
-    color: #e0e6ed;
-}
-
-/* Score Badges */
-.score-badge {
-    background: linear-gradient(135deg, var(--accent-mint), var(--primary-green));
-    color: #000;
-    font-weight: 800;
-    font-size: 0.8rem;
-    padding: 3px 12px;
-    border-radius: 14px;
-    min-width: 60px;
-    text-align: center;
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.25);
-}
-
-.score-badge.pending {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text-muted);
-    font-weight: 600;
-    box-shadow: none;
-    border: 1px solid var(--border-color);
+@media (min-width: 640px) {
+    .compact-table td, .compact-table th {
+        padding: 8px 8px;
+        font-size: 0.85rem;
+    }
 }
