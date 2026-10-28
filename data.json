@@ -59,7 +59,7 @@
 
     { "id": 36, "round": 7, "homeTeam": "Acdwac fc", "awayTeam": "Arsenal DMWS FC", "homeScore": 2, "awayScore": 2 },
     { "id": 37, "round": 7, "homeTeam": "CR7 fc", "awayTeam": "BC FC", "homeScore": null, "awayScore": null },
-    { "id": 38, "round": 7, "homeTeam": "Patryc FC", "awayTeam": "Phoenix FC", "homeScore": null, "awayScore": null },
+    { "id": 38, "round": 7, "homeTeam": "Patryc FC", "awayTeam": "Phoenix FC", "homeScore": 0, "awayScore": 3 },
     { "id": 39, "round": 7, "homeTeam": "Sc kitara", "awayTeam": "Young stars", "homeScore": 1, "awayScore": 1 },
     { "id": 40, "round": 7, "homeTeam": "Trist FC", "awayTeam": "BIG SHOE FC", "homeScore": null, "awayScore": null },
     { "id": 41, "round": 7, "homeTeam": "Galatasaray f.c", "awayTeam": "DBH OB HEATER", "homeScore":  2, "awayScore": 2 },
